@@ -128,6 +128,19 @@ export default {
 />
 ```
 
+### Using the folder prop but never roll the same as the last two rolls
+
+```html
+<skullify
+  ref="icon"
+  folder="./src/assets/wrenches"
+  :options="{
+    autoplay: true,
+  }"
+  :uniqueRollLength="2"
+/>
+```
+
 ### Using the files prop:
 
 ```html
