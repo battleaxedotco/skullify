@@ -2,9 +2,12 @@
 
 [![NPM](https://nodei.co/npm/skullify.png)](https://npmjs.org/package/skullify)
 
-[See the demonstration panel here:](https://github.com/battleaxedotco/skullify-test-panel)
+| [Installation](#installation) | [Use](#use) | [API](#api) | [Notes](#notes-and-todo) |
+| ----------------------------- | :---------: | :---------: | :----------------------: |
 
 ![](https://thumbs.gfycat.com/ThirstyTenseCommabutterfly-small.gif)
+
+> [See the demonstration panel above here](https://github.com/battleaxedotco/skullify-test-panel)
 
 ## Installation
 
@@ -46,10 +49,12 @@ export default {
 
 `<skullify>`
 
-- Props
-- Methods
-- Events
-- Examples
+- [Props](#skullify-props)
+- [Methods](#skullify-methods)
+- [Events](#skullify-events)
+- [Examples](#skullify-examples)
+
+---
 
 ## `<skullify> props`
 
@@ -105,7 +110,9 @@ export default {
 
 > Skullify includes all [native Lottie events](https://github.com/airbnb/lottie-web#events). All events are dash-case, e.g. "dom-loaded", "loop-complete", "loaded-images", etc.
 
-## Examples
+---
+
+## `<skullify> examples`
 
 ### Using the folder prop:
 
