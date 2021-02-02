@@ -45,6 +45,8 @@ export default {
  -->
 ```
 
+See the [examples section here](#skullify-examples) for more in-depth use cases.
+
 # API
 
 `<skullify>`
@@ -201,6 +203,8 @@ export default {
 
 ### Using shuffleFile() in any of the above
 
+Roll from the current file to a new random file:
+
 ```js
 export default {
   methods: {
@@ -217,3 +221,4 @@ export default {
 
 - Skullify doesn't register it's content as static, and lazy loads. The first ~100ms result in it's container being minimally sized then expanding when the animation loads, pushing content below down and causing a noticeable unfolding effect. This is no issue when everything is centered or it's parent contains static `min-width` and `min-height`, but it should accept a `skeleton` to prevent this
 - shuffleSegment is not yet written, though it's been proven to work in the example panel
+- **uniqueRollLength** should not be the `files.length` or `files.length - 1`. If you set this as `3` with a list of `4` files, this will result in the same sequence played indefinitely, e.g. `0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, ...`
