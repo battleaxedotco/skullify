@@ -347,7 +347,7 @@ export default {
       while (this.previousSegmentRolls.length > this.uniqueRollLength)
         this.previousSegmentRolls.shift();
       let roll = this.rollRandom(
-        this.realFiles.length,
+        this.segments.length,
         this.previousSegmentRolls
       );
       this.previousSegmentRolls.push(roll);
