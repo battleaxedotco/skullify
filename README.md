@@ -91,12 +91,12 @@ export default {
 };
 ```
 
-| Method               | Params           |                                                                                                                          Description |
-| :------------------- | :--------------- | -----------------------------------------------------------------------------------------------------------------------------------: |
-| `reconstruct()`      |                  | Destroys the current instance, removes all events, reinitializes according to the currently active index, and regenerates all events |
-| `shuffleFile()`      |                  |                                                   Rolls a random number to set as active index, then calls `reconstruct()` on itself |
-| `shuffleSegment()`   |                  |                                              Rolls a random number to set as active index, then calls `playSegmentChunk()` on itself |
-| `playSegmentChunk()` | index = `Number` |                                                               Plays the segment of frames between two comp marker locations by index |
+| Method               | Params           |                                                                                                                                                                                                                      Description |
+| :------------------- | :--------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `reconstruct()`      |                  | Destroys the current instance, removes all events, reinitializes according to the currently active index, and regenerates all events. This is called automatically when using a shuffle below, but you can force it if necessary |
+| `shuffleFile()`      |                  |                                                                                                                                               Rolls a random number to set as active index, then calls `reconstruct()` on itself |
+| `shuffleSegment()`   |                  |                                                                                                                                          Rolls a random number to set as active index, then calls `playSegmentChunk()` on itself |
+| `playSegmentChunk()` | index = `Number` |                                                                                                                                                           Plays the segment of frames between two comp marker locations by index |
 
 > Skullify includes all [native Lottie methods](https://github.com/airbnb/lottie-web#usage)
 
