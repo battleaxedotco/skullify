@@ -1,12 +1,14 @@
 <template>
   <div class="skullify-container">
-    <slot v-if="$slots.default" />
-    <div
-      v-else
-      v-show="!mounted"
-      :style="buildSkeleton()"
-      class="skullify-skeleton"
-    />
+    <div v-if="debug">
+      <slot v-if="$slots.default" />
+      <div
+        v-else
+        v-show="!mounted"
+        :style="buildSkeleton()"
+        class="skullify-skeleton"
+      />
+    </div>
     <div class="skullify-animation" />
   </div>
 </template>
