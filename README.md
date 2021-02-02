@@ -232,6 +232,6 @@ export default {
 
 ## Notes and Todo
 
-- Skullify doesn't register it's content as static, and lazy loads. The first ~100ms result in it's container being minimally sized then expanding when the animation loads, pushing content below down and causing a noticeable unfolding effect. This is no issue when everything is centered or it's parent contains static `min-width` and `min-height`, but it should accept a `skeleton` to prevent this
-- shuffleSegment is not yet written, though it's been proven to work in the example panel
+- Skullify doesn't register its content as static before calling lottie and subsequently lazy loads. The first ~100ms result in it's container being minimally sized (containing no content) then expanding when the animation loads, pushing sibling content down and causing a noticeable unfolding effect. This is no issue when everything is centered or the parent contains static `min-width` and `min-height`, but it should accept a `skeleton` or aspect ratio to prevent this
+- `shuffleSegment()` is not yet written, though it's been proven to work in the example panel
 - **uniqueRollLength** should not be the `files.length` or `files.length - 1`. If you set this as `3` with a list of `4` files, this will result in the same sequence played indefinitely, e.g. `0, 2, 1, 3, 0, 2, 1, 3, 0, 2, 1, 3, ...`
