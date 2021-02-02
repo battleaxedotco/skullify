@@ -1,6 +1,6 @@
 <template>
   <div class="skullify-container">
-    <div v-if="debug">
+    <div v-if="false">
       <slot v-if="$slots.default" />
       <div
         v-else
@@ -18,10 +18,8 @@ import * as lottie from "lottie-web";
 import spy from "cep-spy";
 import path from "path";
 
-// Adobe is #1 concern
+// Adobe is #1 concern, but node should be handled with fs/path resolution later
 const isAdobe = window.__adobe_cep__ ? true : false;
-
-// Node should be handled for filepaths via fs whenever not in Adobe
 const isNode =
   typeof process !== "undefined" && process.release.name === "node";
 
@@ -162,11 +160,16 @@ export default {
     segments() {
       try {
         if (!this.animData || !this.markers.length) return [];
-        let markers = this.markers.map((marker) => {
-          return marker.tm;
-        });
         let list = [];
-        for (let i = 0; i < markers.length - 1; i++) {
+        for (
+          let i = 0;
+          i <
+          this.markers.map((marker) => {
+            return marker.tm;
+          }).length -
+            1;
+          i++
+        ) {
           const marker = markers[i];
           const nextmarker = markers[i + 1];
           let temp = {
@@ -207,15 +210,13 @@ export default {
       return `${a / r}:${b / r}`;
     },
     getRatio(str) {
-      console.log(str);
       let string = str.split(":");
       if (!string.length) return null;
       return +string[0] / +string[1];
     },
     buildSkeleton() {
-      // if (this.mounted) {
-      console.log("SKELETON");
       let ratio = this.getAspectRatio(960, 540);
+      if (this.debug) console.log(ratio);
       let pratio = this.getRatio(ratio);
       return `
           overflow: hidden;
@@ -224,7 +225,6 @@ export default {
           width: 100%;
           background: var(--color-bg);
         `;
-      // }
     },
     sendEvent() {
       if (!arguments.length || !arguments[0]) return null;
@@ -296,9 +296,6 @@ export default {
       if (val) await this.init();
     },
     async init() {
-      if (this.debug) {
-        console.log("INITIALIZING", this.animationData, this.animData);
-      }
       try {
         let temp = this.animationData
           ? this.animationData
@@ -328,7 +325,7 @@ export default {
         Object.assign(
           {
             animationData: anim,
-            wrapper: this.$el.children[1],
+            wrapper: this.$el.children[0],
             name: this.name,
           },
           Object.assign(this.opts, this.options)
@@ -346,7 +343,17 @@ export default {
       this.activeFileIndex = roll;
       this.reconstruct(true);
     },
-    shuffleSegment() {},
+    shuffleSegment() {
+      while (this.previousSegmentRolls.length > this.uniqueRollLength)
+        this.previousSegmentRolls.shift();
+      let roll = this.rollRandom(
+        this.realFiles.length,
+        this.previousSegmentRolls
+      );
+      this.previousSegmentRolls.push(roll);
+      this.activeSegmentIndex = roll;
+      this.playSegmentChunk(this.activeSegmentIndex);
+    },
     rollRandom(max, excludes = []) {
       let roll = this.randomNum(0, max);
       return excludes.includes(roll) ? this.rollRandom(max, excludes) : roll;
